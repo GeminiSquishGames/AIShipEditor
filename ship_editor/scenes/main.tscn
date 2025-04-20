@@ -101,3 +101,5 @@ render_target_update_mode = 4
 [node name="PartsContainer" type="Node2D" parent="HSplitContainer/EditorPanelContainer/VBoxContainer/EditorContainer/EditorViewport/SubViewport"]
 
 [node name="Camera2D" type="Camera2D" parent="HSplitContainer/EditorPanelContainer/VBoxContainer/EditorContainer/EditorViewport/SubViewport"]
+position = Vector2(0, 0)
+current = true
