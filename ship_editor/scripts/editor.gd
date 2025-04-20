@@ -12,7 +12,7 @@ var viewport_container: SubViewportContainer
 
 # Ship data
 var current_ship_texture: Texture2D
-var grid_cells: Array[Vector2] = []
+var grid_cells: Array[Vector2i] = []
 var grid_cell_size: int = 16
 var placed_parts: Array[Dictionary] = []
 var scanner_placed: bool = false
