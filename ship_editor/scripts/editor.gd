@@ -251,16 +251,16 @@ func _input(event):
 			if event.pressed:
 				if is_in_viewport and not is_dragging and not is_moving_part:
 					# Try to select a part
-					_try_select_part_at_position(viewport.get_mouse_position())
+					_try_select_part_at_position(_get_mouse_position_in_viewport())
 			else:  # Button released
 				if is_dragging and is_in_viewport:
 					# Try to place a new part
-					_try_place_part(viewport.get_mouse_position())
+					_try_place_part(_get_mouse_position_in_viewport())
 					is_dragging = false
 					drag_preview.visible = false
 				elif is_moving_part and is_in_viewport:
 					# Finish moving a part
-					_finish_move_part(viewport.get_mouse_position())
+					_finish_move_part(_get_mouse_position_in_viewport())
 					is_moving_part = false
 					drag_preview.visible = false
 		
