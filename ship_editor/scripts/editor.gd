@@ -416,12 +416,12 @@ func _finish_move_part(position: Vector2):
 	part.node.position = closest_cell
 	part.node.visible = true
 
-func _find_closest_grid_cell(position: Vector2):
+func _find_closest_grid_cell(position: Vector2) -> Vector2i:
 	var closest_cell = null
 	var closest_distance = INF
 	
 	for cell in grid_cells:
-		var distance = position.distance_to(cell)
+		var distance = position.distance_to(Vector2(cell))
 		if distance < closest_distance and distance < grid_cell_size * 1.5:
 			closest_cell = cell
 			closest_distance = distance
