@@ -158,9 +158,15 @@ func _load_ship(ship_name: String):
 	
 	# Center the ship
 	ship_sprite.position = Vector2.ZERO
+	camera.position = Vector2.ZERO
 	
 	# Generate grid based on ship sprite
 	_generate_grid()
+	
+	# Print debug info
+	print("Ship dimensions: ", current_ship_texture.get_size())
+	print("Viewport size: ", viewport.size)
+	print("Camera position: ", camera.position)
 
 func _generate_grid():
 	# Clear old grid
