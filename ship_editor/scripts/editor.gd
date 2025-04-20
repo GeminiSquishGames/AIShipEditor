@@ -73,6 +73,9 @@ func _ready():
 	viewport = $HSplitContainer/EditorPanelContainer/VBoxContainer/EditorContainer/EditorViewport/SubViewport
 	viewport_container = $HSplitContainer/EditorPanelContainer/VBoxContainer/EditorContainer/EditorViewport
 	
+	# Ensure the camera is set to current
+	camera.current = true
+	
 	# Connect signals
 	$HSplitContainer/PartsPanelContainer/VBoxContainer/LoadShipButton.pressed.connect(_on_load_ship_button_pressed)
 	$HSplitContainer/PartsPanelContainer/VBoxContainer/SaveShipButton.pressed.connect(_on_save_ship_button_pressed)
