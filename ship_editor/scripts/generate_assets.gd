@@ -107,7 +107,7 @@ func generate_part_sprite(name: String, base_color: Color, size: Vector2):
 						if y > size.y * 0.6:
 							image.set_pixel(x, y, base_color)
 						elif y > size.y * 0.3:
-							var flame_color = Color.lerp(base_color, Color(1, 0.7, 0.1, 0.8), 0.7)
+							var flame_color = base_color.lerp(Color(1, 0.7, 0.1, 0.8), 0.7)
 							image.set_pixel(x, y, flame_color)
 				
 				"explosive":
