@@ -291,7 +291,8 @@ func _try_select_part_at_position(position: Vector2):
 	
 	for i in range(placed_parts.size()):
 		var part = placed_parts[i]
-		var distance = position.distance_to(part.position)
+		var part_pos = Vector2(part.position)  # Convert Vector2i to Vector2 if needed
+		var distance = position.distance_to(part_pos)
 		if distance < closest_distance:
 			closest_part_index = i
 			closest_distance = distance
