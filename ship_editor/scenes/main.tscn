@@ -65,9 +65,19 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/EditorPanelContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HSplitContainer/EditorPanelContainer/VBoxContainer"]
+[node name="EditorHeader" type="HBoxContainer" parent="HSplitContainer/EditorPanelContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="HSplitContainer/EditorPanelContainer/VBoxContainer/EditorHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "Ship Editor"
+horizontal_alignment = 1
+
+[node name="ControlsInfo" type="Label" parent="HSplitContainer/EditorPanelContainer/VBoxContainer/EditorHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Left Click: Select | Middle Click: Move | Right Click: Delete"
 horizontal_alignment = 1
 
 [node name="EditorContainer" type="CenterContainer" parent="HSplitContainer/EditorPanelContainer/VBoxContainer"]
