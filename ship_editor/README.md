@@ -2,6 +2,13 @@
 
 This is a ship editor that allows you to customize ships for a top-down space shooter game by placing various parts (cannons, thrusters, explosives launchers, scanners, and tractor beams) on the ship's grid.
 
+## Controls
+
+- **Left Click**: Select a part
+- **Middle Click**: Move a selected part
+- **Right Click**: Delete a part (or cancel dragging)
+- **Delete Button**: Remove the selected part
+
 ## Features
 
 - Load different ship sprites
