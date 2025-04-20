@@ -249,7 +249,12 @@ func _input(event):
 					is_moving_part = false
 					drag_preview.visible = false
 		
-		# Right-click to cancel drag or move
+		# Middle mouse button to move a selected part
+		elif event.button_index == MOUSE_BUTTON_MIDDLE and event.pressed:
+			if selected_part_index >= 0 and not is_dragging and not is_moving_part:
+				_start_move_part()
+				
+		# Right-click to cancel drag or move, or delete a part
 		elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
 			if is_dragging or is_moving_part:
 				is_dragging = false
@@ -259,7 +264,11 @@ func _input(event):
 				if selected_part_index >= 0 and selected_part_index < placed_parts.size():
 					var part = placed_parts[selected_part_index]
 					part.node.modulate = Color(1, 1, 1)  # Reset highlight
+					part.node.visible = true  # Ensure visibility is restored
 				_deselect_part()
+			elif selected_part_index >= 0:
+				# Delete the selected part with right-click
+				_on_delete_button_pressed()
 
 func _try_select_part_at_position(position: Vector2):
 	var closest_part_index = -1
