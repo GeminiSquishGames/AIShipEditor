@@ -137,7 +137,7 @@ func generate_part_sprite(name: String, base_color: Color, size: Vector2):
 					
 					# Add beam effect at bottom
 					if y > size.y * 0.6 and abs(x - center_x) < size.x * 0.4:
-						var beam_color = Color(0.9, 0.9, 1.0, 0.5)
+						var beam_color = base_color.lerp(Color(0.9, 0.9, 1.0, 0.5), 0.7)
 						image.set_pixel(x, y, beam_color)
 	
 	# Save the image
