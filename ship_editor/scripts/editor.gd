@@ -200,7 +200,7 @@ func _generate_grid():
 			
 			if cell_has_pixels:
 				# Add to valid grid cells
-				var cell_position = Vector2(x, y) + Vector2(grid_cell_size / 2, grid_cell_size / 2) - image_size / 2
+				var cell_position = Vector2i(x, y) + Vector2i(grid_cell_size / 2, grid_cell_size / 2) - (image_size / 2).ceil() as Vector2i
 				grid_cells.append(cell_position)
 				
 				# Draw grid cell visual
