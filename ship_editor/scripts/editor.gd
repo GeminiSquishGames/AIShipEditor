@@ -223,22 +223,28 @@ func _get_mouse_position_in_viewport() -> Vector2:
 	# Get the viewport container's rect in global coordinates
 	var viewport_rect = viewport_container.get_global_rect()
 	
-	# Get the global mouse position
-	var global_mouse_pos = get_viewport().get_mouse_position()
+	# Get mouse position in the viewport
+	var mouse_pos = get_viewport().get_mouse_position()
 	
-	# Calculate local position within the viewport
-	var local_mouse_pos = global_mouse_pos - viewport_rect.position
+	# Check if mouse is inside the viewport
+	if not viewport_rect.has_point(mouse_pos):
+		return Vector2.ZERO
 	
-	# Account for viewport scaling
-	var viewport_scale = Vector2(viewport.size) / Vector2(viewport_rect.size)
-	var scaled_pos = local_mouse_pos * viewport_scale
+	# Calculate relative position within viewport container (0-1 range)
+	var relative_x = (mouse_pos.x - viewport_rect.position.x) / viewport_rect.size.x
+	var relative_y = (mouse_pos.y - viewport_rect.position.y) / viewport_rect.size.y
 	
-	# Apply any additional viewport transform corrections (if camera is centered)
-	var camera_offset = Vector2.ZERO
-	if viewport.size != viewport_container.size:
-		camera_offset = viewport.size / 2
-		
-	return scaled_pos
+	# Convert to viewport coordinates
+	var viewport_pos = Vector2(
+		relative_x * viewport.size.x,
+		relative_y * viewport.size.y
+	)
+	
+	# Convert to world coordinates considering camera position
+	# This is needed because in Godot, the (0,0) is the center of the viewport when using a Camera2D
+	var world_pos = viewport_pos - (viewport.size / 2)
+	
+	return world_pos
 
 func _input(event):
 	# Handle mouse movement in _process for smoother updates
