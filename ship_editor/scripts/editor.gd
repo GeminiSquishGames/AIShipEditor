@@ -212,18 +212,33 @@ func _generate_grid():
 
 func _process(_delta):
 	if is_dragging or is_moving_part:
-		# Convert mouse position to viewport coordinates
-		var mouse_pos = viewport.get_mouse_position()
+		# Get the correct mouse position in the viewport
+		var mouse_viewport_pos = _get_mouse_position_in_viewport()
 		
-		# Using local to convert properly
-		var viewport_rect = viewport_container.get_global_rect()
-		var mouse_viewport_pos = get_viewport().get_mouse_position() - viewport_rect.position
+		# Update preview position to match the actual mouse position
+		drag_preview.position = mouse_viewport_pos
+
+# Get the actual mouse position in the viewport's coordinate system
+func _get_mouse_position_in_viewport() -> Vector2:
+	# Get the viewport container's rect in global coordinates
+	var viewport_rect = viewport_container.get_global_rect()
+	
+	# Get the global mouse position
+	var global_mouse_pos = get_viewport().get_mouse_position()
+	
+	# Calculate local position within the viewport
+	var local_mouse_pos = global_mouse_pos - viewport_rect.position
+	
+	# Account for viewport scaling
+	var viewport_scale = Vector2(viewport.size) / Vector2(viewport_rect.size)
+	var scaled_pos = local_mouse_pos * viewport_scale
+	
+	# Apply any additional viewport transform corrections (if camera is centered)
+	var camera_offset = Vector2.ZERO
+	if viewport.size != viewport_container.size:
+		camera_offset = viewport.size / 2
 		
-		# Scale to account for viewport scaling
-		mouse_viewport_pos *= Vector2(viewport.size) / Vector2(viewport_rect.size)
-		
-		# Update preview position
-		drag_preview.global_position = mouse_viewport_pos
+	return scaled_pos
 
 func _input(event):
 	# Handle mouse movement in _process for smoother updates
