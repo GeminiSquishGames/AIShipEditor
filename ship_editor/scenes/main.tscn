@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b8r58bvdqp8hg"]
 
-[ext_resource type="Script" uid="uid://bedjfle873qlo" path="res://scripts/editor.gd" id="1_3bqh5"]
+[ext_resource type="Script" path="res://scripts/editor.gd" id="1_3bqh5"]
 
 [node name="ShipEditor" type="Control"]
 layout_mode = 3
